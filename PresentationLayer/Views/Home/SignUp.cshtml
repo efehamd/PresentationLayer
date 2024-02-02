@@ -1,0 +1,78 @@
+﻿@using Entity
+@model Kullanici
+
+<style>
+    body {
+        background-color: #f2f2f2;
+    }
+
+    form {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        button[type="submit"]:active {
+            background-color: #3e8e41;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1) inset;
+        }
+
+        button[type="submit"]:focus {
+            outline: none;
+        }
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+
+<h2 style="text-align: center; color: #4CAF50;"><b>Sign Up</b></h2>
+
+<form method="post" asp-controller="Home" asp-action="AddUser">
+    <label for="userName"><b>Kullanıcı Adı:</b></label>
+    <br>
+    <div style="display: flex; align-items: center;">
+        <i class="fa fa-user" style="font-size: 20px; margin-right: 10px; color: #4CAF50;"></i>
+        <input type="text" asp-for="KullaniciAdi" id="userName" name="KullaniciAdi" placeholder="kullanıcı adı" style="border-radius: 5px; padding: 5px;">
+    </div>
+    <br>
+    <label for="password"><b>Şifre:</b></label>
+    <br>
+    <div style="display: flex; align-items: center;">
+        <i class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color: #4CAF50;"></i>
+        <input type="password" asp-for="Sifre" id="password" name="Sifre" placeholder="şifre" style="border-radius: 5px; padding: 5px;">
+    </div>
+    <br>
+    <button type="submit" style="background-color: #4CAF50; color: white; border-radius: 5px; padding: 10px 20px; font-size: 16px; border: none;">Kaydol</button>
+</form>

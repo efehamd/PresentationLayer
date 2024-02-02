@@ -1,0 +1,104 @@
+﻿@using Entity
+<style>
+    body {
+        background-color: #f2f2f2;
+    }
+
+    .table {
+        background-color: #fff;
+    }
+
+    form {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        button[type="submit"]:active {
+            background-color: #3e8e41;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1) inset;
+        }
+
+        button[type="submit"]:focus {
+            outline: none;
+        }
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kullanıcı Adı</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td style="font-size: 20px; font-weight: bold;">@user.KullaniciAdi</td>
+                <td>
+                    <form method="post" asp-controller="Home" asp-action="RemoveUser">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <button type="submit" class="btn btn-danger">Kullanıcıyı Sil</button>
+                    </form>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-danger" onclick="editUser('@user.Id', '@user.KullaniciAdi')">Düzenle</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Kullanıcı düzenleme formu -->
+<div id="editForm" style="display:none;">
+    <form id="editUserForm" method="post" asp-controller="Home" asp-action="EditUser">
+        <input type="hidden" id="editUserId" name="userId" />
+        <input type="text" id="editUserName" name="userName" />
+        <button type="submit">Kaydet</button>
+    </form>
+</div>
+
+<script>
+    function editUser(userId, userName) {
+        document.getElementById("editUserId").value = userId;
+        document.getElementById("editUserName").value = userName;
+        document.getElementById("editForm").style.display = "block";
+    }
+</script>
